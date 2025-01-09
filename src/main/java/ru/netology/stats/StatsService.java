@@ -13,8 +13,8 @@ public class StatsService {
     }
 
     public long avgSales(long[] sales) {
-        StatsService service = new StatsService();
-        long avg = service.sumSales(sales) / sales.length;
+        long sum = sumSales(sales);
+        long avg = sum / sales.length;
 
         return avg;
     }
@@ -41,10 +41,10 @@ public class StatsService {
 
     public int numberLowMonth(long[] sales) {
         int numberLow = 0;
-
+        long avg = avgSales(sales);
         for (int i = 0; i < sales.length; i++) {
-            StatsService service = new StatsService();
-            if (sales[i] < service.avgSales(sales)) {
+
+            if (sales[i] < avg) {
                 numberLow++;
             }
         }
@@ -53,10 +53,9 @@ public class StatsService {
 
     public int numberHighMonth(long[] sales) {
         int numberHigh = 0;
-
+        long avg = avgSales(sales);
         for (int i = 0; i < sales.length; i++) {
-            StatsService service = new StatsService();
-            if (sales[i] > service.avgSales(sales)) {
+            if (sales[i] > avg) {
                 numberHigh++;
             }
         }
